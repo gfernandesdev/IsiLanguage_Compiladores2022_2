@@ -1,6 +1,20 @@
 // Generated from IsiLang.g4 by ANTLR 4.7.1
 package br.com.compiladores.isilanguage.parser;
 
+	import br.com.compiladores.isilanguage.datastructures.IsiSymbol;
+	import br.com.compiladores.isilanguage.datastructures.IsiVariable;
+	import br.com.compiladores.isilanguage.datastructures.IsiSymbolTable;
+	import br.com.compiladores.isilanguage.exceptions.IsiSemanticException;
+	import br.com.compiladores.isilanguage.ast.IsiProgram;
+	import br.com.compiladores.isilanguage.ast.AbstractCommand;
+	import br.com.compiladores.isilanguage.ast.CommandLeitura;
+	import br.com.compiladores.isilanguage.ast.CommandEscrita;
+	import br.com.compiladores.isilanguage.ast.CommandAtribuicao;
+	import br.com.compiladores.isilanguage.ast.CommandDecisao;
+	import java.util.ArrayList;
+	import java.util.Stack;
+
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -23,6 +37,42 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProg(IsiLangParser.ProgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDecl(IsiLangParser.DeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDecl(IsiLangParser.DeclContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaravar(IsiLangParser.DeclaravarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaravar(IsiLangParser.DeclaravarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTipo(IsiLangParser.TipoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTipo(IsiLangParser.TipoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -83,6 +133,18 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCmdattrib(IsiLangParser.CmdattribContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCmdselecao(IsiLangParser.CmdselecaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmdselecao(IsiLangParser.CmdselecaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

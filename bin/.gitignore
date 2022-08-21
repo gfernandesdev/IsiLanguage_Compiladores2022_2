@@ -1,0 +1,16 @@
+/IsiLang.tokens
+/IsiLangLexer.tokens
+/br/
+/IsiLangBaseListener.class
+/IsiLangLexer.class
+/IsiLangListener.class
+/IsiLangParser$BlocoContext.class
+/IsiLangParser$CmdContext.class
+/IsiLangParser$CmdattribContext.class
+/IsiLangParser$CmdescritaContext.class
+/IsiLangParser$CmdleituraContext.class
+/IsiLangParser$ExprContext.class
+/IsiLangParser$ProgContext.class
+/IsiLangParser$TermoContext.class
+/IsiLangParser.class
+/.DS_Store
