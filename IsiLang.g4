@@ -11,6 +11,7 @@ grammar IsiLang;
 	import br.com.compiladores.isilanguage.ast.CommandEscrita;
 	import br.com.compiladores.isilanguage.ast.CommandAtribuicao;
 	import br.com.compiladores.isilanguage.ast.CommandDecisao;
+	import br.com.compiladores.isilanguage.ast.CommandLaco;
 	import java.util.ArrayList;
 	import java.util.Stack;
 }
@@ -101,8 +102,26 @@ bloco	: { curThread = new ArrayList<AbstractCommand>();
 cmd		:  cmdleitura  
  		|  cmdescrita 
  		|  cmdattrib
- 		|  cmdselecao  
+ 		|  cmdselecao
+ 		|  cmdlaco 
 		;
+
+cmdlaco : 'enquanto' AP
+				 ID    { _exprDecision = _input.LT(-1).getText(); }
+                 OPREL { _exprDecision += _input.LT(-1).getText(); }
+                 (ID | NUMBER) {_exprDecision += _input.LT(-1).getText(); }
+				 FP
+				 ACH
+					 { curThread = new ArrayList<AbstractCommand>(); 
+	                      stack.push(curThread);
+	                }
+	                (cmd)+
+				 FCH{
+				 	stack.pop();
+				 	CommandLaco cmd = new CommandLaco(_exprDecision, curThread);
+				 	stack.peek().add(cmd);
+				 }
+		 ;
 		
 cmdleitura	: 'leia' AP
                      ID { verificaID(_input.LT(-1).getText());
@@ -227,3 +246,6 @@ NUMBER	: [0-9]+ ('.' [0-9]+)?
 		;
 		
 WS	: (' ' | '\t' | '\n' | '\r') -> skip;
+
+INTEGER : [0-9]+
+		;
