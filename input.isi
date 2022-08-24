@@ -24,5 +24,6 @@ programa
 	  j = j + 1;
   }
   escreva(a);
+  escreva(t1);
 
 fimprog;
