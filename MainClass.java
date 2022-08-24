@@ -4,6 +4,7 @@ public class MainClass{
        Scanner _key = new Scanner(System.in);
 double  a;
 double  b;
+double  j;
 String  t1;
 a= _key.nextDouble();
 b= _key.nextDouble();
@@ -12,4 +13,10 @@ if (a>b) {
 System.out.println(a);}else {
 System.out.println(b);}
 
+j = 1;
+while (j<=6) {
+System.out.println(j);
+j = j+1;
+}
+System.out.println(a);
   }}

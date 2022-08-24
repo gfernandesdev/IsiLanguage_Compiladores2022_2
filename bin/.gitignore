@@ -5,9 +5,4 @@
 /IsiLangListener.java
 /IsiLangParser.java
 /.gitignore
-/IsiLangParser$CmdlacoContext.class
-/IsiLangParser$CmdselecaoContext.class
-/IsiLangParser$DeclContext.class
-/IsiLangParser$DeclaravarContext.class
-/IsiLangParser$TipoContext.class
 /br/

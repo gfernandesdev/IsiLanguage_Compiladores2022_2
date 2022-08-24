@@ -11,6 +11,7 @@ package br.com.compiladores.isilanguage.parser;
 	import br.com.compiladores.isilanguage.ast.CommandEscrita;
 	import br.com.compiladores.isilanguage.ast.CommandAtribuicao;
 	import br.com.compiladores.isilanguage.ast.CommandDecisao;
+	import br.com.compiladores.isilanguage.ast.CommandLaco;
 	import java.util.ArrayList;
 	import java.util.Stack;
 
@@ -81,6 +82,16 @@ public interface IsiLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCmd(IsiLangParser.CmdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#cmdlaco}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmdlaco(IsiLangParser.CmdlacoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#cmdlaco}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmdlaco(IsiLangParser.CmdlacoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#cmdleitura}.
 	 * @param ctx the parse tree

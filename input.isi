@@ -18,7 +18,7 @@ programa
   }
   
   j = 1;
-  enquanto(j <= t1){
+  enquanto(j <= 6){
 	  escreva(j);
 	  j = j + 1;
   }

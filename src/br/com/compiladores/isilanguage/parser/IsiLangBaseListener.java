@@ -11,6 +11,7 @@ package br.com.compiladores.isilanguage.parser;
 	import br.com.compiladores.isilanguage.ast.CommandEscrita;
 	import br.com.compiladores.isilanguage.ast.CommandAtribuicao;
 	import br.com.compiladores.isilanguage.ast.CommandDecisao;
+	import br.com.compiladores.isilanguage.ast.CommandLaco;
 	import java.util.ArrayList;
 	import java.util.Stack;
 
@@ -97,6 +98,18 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCmd(IsiLangParser.CmdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCmdlaco(IsiLangParser.CmdlacoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmdlaco(IsiLangParser.CmdlacoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
