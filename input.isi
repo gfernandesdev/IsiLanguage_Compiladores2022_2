@@ -1,6 +1,7 @@
 programa
 
   numero a, b;
+  numero j;
   texto  t1;
 
   leia(a);
@@ -16,6 +17,11 @@ programa
      escreva (b);
   }
   
-  
+  j = 1;
+  enquanto(j <= t1){
+	  escreva(j);
+	  j = j + 1;
+  }
+  escreva(a);
 
 fimprog;
