@@ -52,14 +52,12 @@ grammar IsiLang;
 	
 	public void generateCode(){
 		program.generateTarget();
-		if (symbolTableWar.empty() == 1){
-			System.out.println("tem warning nesse caraio");
-		}
-		System.out.println("PRINTA ESSA PORRA");
 	}
 	
-	public void exibeWarning(){
-		
+	public void exibeWarnings() {
+		for (IsiSymbol is: symbolTableWar.getMap()) {
+			System.out.println("Simbolo " + is.getName() + "declarado mas nao utilizado");
+		}
 	}
 }
 
@@ -219,10 +217,12 @@ termo		: ID { verificaID(_input.LT(-1).getText());
 	               _exprContent += _input.LT(-1).getText();
                  } 
             | 
-              NUMBER
+              (NUMBER | TEXTO)
               {
               	_exprContent += _input.LT(-1).getText();
               }
+              
+              
 			;
 			
 	
@@ -260,6 +260,9 @@ ID	: [a-z] ([a-z] | [A-Z] | [0-9])*
 NUMBER	: [0-9]+ ('.' [0-9]+)?
 		;
 		
+TEXTO : ('\''.*?'\'')
+ 	 ;		
+
 WS	: (' ' | '\t' | '\n' | '\r') -> skip;
 
 INTEGER : [0-9]+

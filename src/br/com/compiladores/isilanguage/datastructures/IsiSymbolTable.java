@@ -35,6 +35,14 @@ public class IsiSymbolTable {
 		return map.get(symbolName);
 	}
 	
+	public ArrayList<IsiSymbol> getMap() {
+		ArrayList<IsiSymbol> lista = new ArrayList<IsiSymbol>();
+		for (IsiSymbol symbol : map.values()) {
+			lista.add(symbol);
+		}
+		return lista;
+	}
+	
 	public ArrayList<IsiSymbol> getAll(){
 		ArrayList<IsiSymbol> lista = new ArrayList<IsiSymbol>();
 		for (IsiSymbol symbol : map.values()) {

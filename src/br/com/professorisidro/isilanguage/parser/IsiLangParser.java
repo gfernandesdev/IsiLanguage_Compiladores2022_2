@@ -35,7 +35,7 @@ public class IsiLangParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		AP=10, FP=11, SC=12, OP=13, ATTR=14, VIR=15, ACH=16, FCH=17, OPREL=18, 
-		ID=19, NUMBER=20, WS=21, INTEGER=22;
+		ID=19, NUMBER=20, TEXTO=21, WS=22, INTEGER=23;
 	public static final int
 		RULE_prog = 0, RULE_decl = 1, RULE_declaravar = 2, RULE_tipo = 3, RULE_bloco = 4, 
 		RULE_cmd = 5, RULE_cmdlaco = 6, RULE_cmdleitura = 7, RULE_cmdescrita = 8, 
@@ -52,8 +52,8 @@ public class IsiLangParser extends Parser {
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, "AP", "FP", 
-		"SC", "OP", "ATTR", "VIR", "ACH", "FCH", "OPREL", "ID", "NUMBER", "WS", 
-		"INTEGER"
+		"SC", "OP", "ATTR", "VIR", "ACH", "FCH", "OPREL", "ID", "NUMBER", "TEXTO", 
+		"WS", "INTEGER"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -135,14 +135,12 @@ public class IsiLangParser extends Parser {
 		
 		public void generateCode(){
 			program.generateTarget();
-			if (symbolTableWar.empty() == 1){
-				System.out.println("tem warning nesse caraio");
-			}
-			System.out.println("PRINTA ESSA PORRA");
 		}
 		
-		public void exibeWarning(){
-			
+		public void exibeWarnings() {
+			for (IsiSymbol is: symbolTableWar.getMap()) {
+				System.out.println("Simbolo " + is.getName() + "declarado mas nao utilizado");
+			}
 		}
 
 	public IsiLangParser(TokenStream input) {
@@ -1024,6 +1022,7 @@ public class IsiLangParser extends Parser {
 	public static class TermoContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(IsiLangParser.ID, 0); }
 		public TerminalNode NUMBER() { return getToken(IsiLangParser.NUMBER, 0); }
+		public TerminalNode TEXTO() { return getToken(IsiLangParser.TEXTO, 0); }
 		public TermoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1041,6 +1040,7 @@ public class IsiLangParser extends Parser {
 	public final TermoContext termo() throws RecognitionException {
 		TermoContext _localctx = new TermoContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_termo);
+		int _la;
 		try {
 			setState(156);
 			_errHandler.sync(this);
@@ -1056,10 +1056,19 @@ public class IsiLangParser extends Parser {
 				}
 				break;
 			case NUMBER:
+			case TEXTO:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(154);
-				match(NUMBER);
+				_la = _input.LA(1);
+				if ( !(_la==NUMBER || _la==TEXTO) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
 
 				              	_exprContent += _input.LT(-1).getText();
 				              
@@ -1081,7 +1090,7 @@ public class IsiLangParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\u00a1\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\u00a1\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\3\2\3\2\3\2\3\2\3\3\6\3$\n\3\r"+
 		"\3\16\3%\3\4\3\4\3\4\3\4\3\4\3\4\7\4.\n\4\f\4\16\4\61\13\4\3\4\3\4\3\5"+
@@ -1092,38 +1101,38 @@ public class IsiLangParser extends Parser {
 		"\3\f\3\f\3\f\3\f\3\f\3\f\3\f\6\f\177\n\f\r\f\16\f\u0080\3\f\3\f\3\f\3"+
 		"\f\3\f\3\f\6\f\u0089\n\f\r\f\16\f\u008a\3\f\3\f\3\f\5\f\u0090\n\f\3\r"+
 		"\3\r\3\r\3\r\7\r\u0096\n\r\f\r\16\r\u0099\13\r\3\16\3\16\3\16\3\16\5\16"+
-		"\u009f\n\16\3\16\2\2\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\3\3\2\25\26"+
-		"\2\u00a1\2\34\3\2\2\2\4#\3\2\2\2\6\'\3\2\2\2\b8\3\2\2\2\n:\3\2\2\2\fE"+
-		"\3\2\2\2\16G\3\2\2\2\20Z\3\2\2\2\22b\3\2\2\2\24j\3\2\2\2\26r\3\2\2\2\30"+
-		"\u0091\3\2\2\2\32\u009e\3\2\2\2\34\35\7\3\2\2\35\36\5\4\3\2\36\37\5\n"+
-		"\6\2\37 \7\4\2\2 !\b\2\1\2!\3\3\2\2\2\"$\5\6\4\2#\"\3\2\2\2$%\3\2\2\2"+
-		"%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'(\5\b\5\2()\7\25\2\2)/\b\4\1\2*+\7\21"+
-		"\2\2+,\7\25\2\2,.\b\4\1\2-*\3\2\2\2.\61\3\2\2\2/-\3\2\2\2/\60\3\2\2\2"+
-		"\60\62\3\2\2\2\61/\3\2\2\2\62\63\7\16\2\2\63\7\3\2\2\2\64\65\7\5\2\2\65"+
-		"9\b\5\1\2\66\67\7\6\2\2\679\b\5\1\28\64\3\2\2\28\66\3\2\2\29\t\3\2\2\2"+
-		":<\b\6\1\2;=\5\f\7\2<;\3\2\2\2=>\3\2\2\2><\3\2\2\2>?\3\2\2\2?\13\3\2\2"+
-		"\2@F\5\20\t\2AF\5\22\n\2BF\5\24\13\2CF\5\26\f\2DF\5\16\b\2E@\3\2\2\2E"+
-		"A\3\2\2\2EB\3\2\2\2EC\3\2\2\2ED\3\2\2\2F\r\3\2\2\2GH\7\7\2\2HI\7\f\2\2"+
-		"IJ\7\25\2\2JK\b\b\1\2KL\7\24\2\2LM\b\b\1\2MN\t\2\2\2NO\b\b\1\2OP\7\r\2"+
-		"\2PQ\7\22\2\2QS\b\b\1\2RT\5\f\7\2SR\3\2\2\2TU\3\2\2\2US\3\2\2\2UV\3\2"+
-		"\2\2VW\3\2\2\2WX\7\23\2\2XY\b\b\1\2Y\17\3\2\2\2Z[\7\b\2\2[\\\7\f\2\2\\"+
-		"]\7\25\2\2]^\b\t\1\2^_\7\r\2\2_`\7\16\2\2`a\b\t\1\2a\21\3\2\2\2bc\7\t"+
-		"\2\2cd\7\f\2\2de\7\25\2\2ef\b\n\1\2fg\7\r\2\2gh\7\16\2\2hi\b\n\1\2i\23"+
-		"\3\2\2\2jk\7\25\2\2kl\b\13\1\2lm\7\20\2\2mn\b\13\1\2no\5\30\r\2op\7\16"+
-		"\2\2pq\b\13\1\2q\25\3\2\2\2rs\7\n\2\2st\7\f\2\2tu\7\25\2\2uv\b\f\1\2v"+
-		"w\7\24\2\2wx\b\f\1\2xy\t\2\2\2yz\b\f\1\2z{\7\r\2\2{|\7\22\2\2|~\b\f\1"+
-		"\2}\177\5\f\7\2~}\3\2\2\2\177\u0080\3\2\2\2\u0080~\3\2\2\2\u0080\u0081"+
-		"\3\2\2\2\u0081\u0082\3\2\2\2\u0082\u0083\7\23\2\2\u0083\u008f\b\f\1\2"+
-		"\u0084\u0085\7\13\2\2\u0085\u0086\7\22\2\2\u0086\u0088\b\f\1\2\u0087\u0089"+
-		"\5\f\7\2\u0088\u0087\3\2\2\2\u0089\u008a\3\2\2\2\u008a\u0088\3\2\2\2\u008a"+
-		"\u008b\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d\7\23\2\2\u008d\u008e\b"+
-		"\f\1\2\u008e\u0090\3\2\2\2\u008f\u0084\3\2\2\2\u008f\u0090\3\2\2\2\u0090"+
-		"\27\3\2\2\2\u0091\u0097\5\32\16\2\u0092\u0093\7\17\2\2\u0093\u0094\b\r"+
-		"\1\2\u0094\u0096\5\32\16\2\u0095\u0092\3\2\2\2\u0096\u0099\3\2\2\2\u0097"+
-		"\u0095\3\2\2\2\u0097\u0098\3\2\2\2\u0098\31\3\2\2\2\u0099\u0097\3\2\2"+
-		"\2\u009a\u009b\7\25\2\2\u009b\u009f\b\16\1\2\u009c\u009d\7\26\2\2\u009d"+
-		"\u009f\b\16\1\2\u009e\u009a\3\2\2\2\u009e\u009c\3\2\2\2\u009f\33\3\2\2"+
-		"\2\r%/8>EU\u0080\u008a\u008f\u0097\u009e";
+		"\u009f\n\16\3\16\2\2\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\4\3\2\25\26"+
+		"\3\2\26\27\2\u00a1\2\34\3\2\2\2\4#\3\2\2\2\6\'\3\2\2\2\b8\3\2\2\2\n:\3"+
+		"\2\2\2\fE\3\2\2\2\16G\3\2\2\2\20Z\3\2\2\2\22b\3\2\2\2\24j\3\2\2\2\26r"+
+		"\3\2\2\2\30\u0091\3\2\2\2\32\u009e\3\2\2\2\34\35\7\3\2\2\35\36\5\4\3\2"+
+		"\36\37\5\n\6\2\37 \7\4\2\2 !\b\2\1\2!\3\3\2\2\2\"$\5\6\4\2#\"\3\2\2\2"+
+		"$%\3\2\2\2%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'(\5\b\5\2()\7\25\2\2)/\b\4"+
+		"\1\2*+\7\21\2\2+,\7\25\2\2,.\b\4\1\2-*\3\2\2\2.\61\3\2\2\2/-\3\2\2\2/"+
+		"\60\3\2\2\2\60\62\3\2\2\2\61/\3\2\2\2\62\63\7\16\2\2\63\7\3\2\2\2\64\65"+
+		"\7\5\2\2\659\b\5\1\2\66\67\7\6\2\2\679\b\5\1\28\64\3\2\2\28\66\3\2\2\2"+
+		"9\t\3\2\2\2:<\b\6\1\2;=\5\f\7\2<;\3\2\2\2=>\3\2\2\2><\3\2\2\2>?\3\2\2"+
+		"\2?\13\3\2\2\2@F\5\20\t\2AF\5\22\n\2BF\5\24\13\2CF\5\26\f\2DF\5\16\b\2"+
+		"E@\3\2\2\2EA\3\2\2\2EB\3\2\2\2EC\3\2\2\2ED\3\2\2\2F\r\3\2\2\2GH\7\7\2"+
+		"\2HI\7\f\2\2IJ\7\25\2\2JK\b\b\1\2KL\7\24\2\2LM\b\b\1\2MN\t\2\2\2NO\b\b"+
+		"\1\2OP\7\r\2\2PQ\7\22\2\2QS\b\b\1\2RT\5\f\7\2SR\3\2\2\2TU\3\2\2\2US\3"+
+		"\2\2\2UV\3\2\2\2VW\3\2\2\2WX\7\23\2\2XY\b\b\1\2Y\17\3\2\2\2Z[\7\b\2\2"+
+		"[\\\7\f\2\2\\]\7\25\2\2]^\b\t\1\2^_\7\r\2\2_`\7\16\2\2`a\b\t\1\2a\21\3"+
+		"\2\2\2bc\7\t\2\2cd\7\f\2\2de\7\25\2\2ef\b\n\1\2fg\7\r\2\2gh\7\16\2\2h"+
+		"i\b\n\1\2i\23\3\2\2\2jk\7\25\2\2kl\b\13\1\2lm\7\20\2\2mn\b\13\1\2no\5"+
+		"\30\r\2op\7\16\2\2pq\b\13\1\2q\25\3\2\2\2rs\7\n\2\2st\7\f\2\2tu\7\25\2"+
+		"\2uv\b\f\1\2vw\7\24\2\2wx\b\f\1\2xy\t\2\2\2yz\b\f\1\2z{\7\r\2\2{|\7\22"+
+		"\2\2|~\b\f\1\2}\177\5\f\7\2~}\3\2\2\2\177\u0080\3\2\2\2\u0080~\3\2\2\2"+
+		"\u0080\u0081\3\2\2\2\u0081\u0082\3\2\2\2\u0082\u0083\7\23\2\2\u0083\u008f"+
+		"\b\f\1\2\u0084\u0085\7\13\2\2\u0085\u0086\7\22\2\2\u0086\u0088\b\f\1\2"+
+		"\u0087\u0089\5\f\7\2\u0088\u0087\3\2\2\2\u0089\u008a\3\2\2\2\u008a\u0088"+
+		"\3\2\2\2\u008a\u008b\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d\7\23\2\2"+
+		"\u008d\u008e\b\f\1\2\u008e\u0090\3\2\2\2\u008f\u0084\3\2\2\2\u008f\u0090"+
+		"\3\2\2\2\u0090\27\3\2\2\2\u0091\u0097\5\32\16\2\u0092\u0093\7\17\2\2\u0093"+
+		"\u0094\b\r\1\2\u0094\u0096\5\32\16\2\u0095\u0092\3\2\2\2\u0096\u0099\3"+
+		"\2\2\2\u0097\u0095\3\2\2\2\u0097\u0098\3\2\2\2\u0098\31\3\2\2\2\u0099"+
+		"\u0097\3\2\2\2\u009a\u009b\7\25\2\2\u009b\u009f\b\16\1\2\u009c\u009d\t"+
+		"\3\2\2\u009d\u009f\b\16\1\2\u009e\u009a\3\2\2\2\u009e\u009c\3\2\2\2\u009f"+
+		"\33\3\2\2\2\r%/8>EU\u0080\u008a\u008f\u0097\u009e";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

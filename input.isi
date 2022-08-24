@@ -4,6 +4,7 @@ programa
   numero j;
   texto  t1;
 
+  t1 = 'teste';
   leia(a);
   leia(b);
   
