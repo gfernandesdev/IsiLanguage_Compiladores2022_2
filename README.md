@@ -26,6 +26,6 @@ Aceitar números decimais  	(X)
 
 Verificar declaração de variávies (não usar variáveis que não foram declaradas) 	(X)
 
-Verificar se há variáveis declaradas e não-utilizadas (warning) ()
+Verificar se há variáveis declaradas e não-utilizadas (warning) (X)
 
 Geração de pelo menos 1 linguagem destino (C/Java/Python) (X)
