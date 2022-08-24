@@ -4,6 +4,7 @@
 	import br.com.compiladores.isilanguage.datastructures.IsiVariable;
 	import br.com.compiladores.isilanguage.datastructures.IsiSymbolTable;
 	import br.com.compiladores.isilanguage.exceptions.IsiSemanticException;
+	import br.com.compiladores.isilanguage.exceptions.IsiWarning;
 	import br.com.compiladores.isilanguage.ast.IsiProgram;
 	import br.com.compiladores.isilanguage.ast.AbstractCommand;
 	import br.com.compiladores.isilanguage.ast.CommandLeitura;

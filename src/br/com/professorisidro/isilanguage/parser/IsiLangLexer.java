@@ -5,6 +5,7 @@ package br.com.professorisidro.isilanguage.parser;
 	import br.com.compiladores.isilanguage.datastructures.IsiVariable;
 	import br.com.compiladores.isilanguage.datastructures.IsiSymbolTable;
 	import br.com.compiladores.isilanguage.exceptions.IsiSemanticException;
+	import br.com.compiladores.isilanguage.exceptions.IsiWarning;
 	import br.com.compiladores.isilanguage.ast.IsiProgram;
 	import br.com.compiladores.isilanguage.ast.AbstractCommand;
 	import br.com.compiladores.isilanguage.ast.CommandLeitura;
@@ -97,6 +98,7 @@ public class IsiLangLexer extends Lexer {
 		private String _varName;
 		private String _varValue;
 		private IsiSymbolTable symbolTable = new IsiSymbolTable();
+		private IsiSymbolTable symbolTableWar = new IsiSymbolTable();
 		private IsiSymbol symbol;
 		private IsiProgram program = new IsiProgram();
 		private ArrayList<AbstractCommand> curThread;
@@ -113,6 +115,9 @@ public class IsiLangLexer extends Lexer {
 			if (!symbolTable.exists(id)){
 				throw new IsiSemanticException("Symbol "+id+" not declared");
 			}
+			else{
+				symbolTableWar.drop(id);
+			}
 		}
 		
 		public void exibeComandos(){
@@ -123,6 +128,14 @@ public class IsiLangLexer extends Lexer {
 		
 		public void generateCode(){
 			program.generateTarget();
+			if (symbolTableWar.empty() == 1){
+				System.out.println("tem warning nesse caraio");
+			}
+			System.out.println("PRINTA ESSA PORRA");
+		}
+		
+		public void exibeWarning(){
+			
 		}
 
 

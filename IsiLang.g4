@@ -5,6 +5,7 @@ grammar IsiLang;
 	import br.com.compiladores.isilanguage.datastructures.IsiVariable;
 	import br.com.compiladores.isilanguage.datastructures.IsiSymbolTable;
 	import br.com.compiladores.isilanguage.exceptions.IsiSemanticException;
+	import br.com.compiladores.isilanguage.exceptions.IsiWarning;
 	import br.com.compiladores.isilanguage.ast.IsiProgram;
 	import br.com.compiladores.isilanguage.ast.AbstractCommand;
 	import br.com.compiladores.isilanguage.ast.CommandLeitura;
@@ -21,6 +22,7 @@ grammar IsiLang;
 	private String _varName;
 	private String _varValue;
 	private IsiSymbolTable symbolTable = new IsiSymbolTable();
+	private IsiSymbolTable symbolTableWar = new IsiSymbolTable();
 	private IsiSymbol symbol;
 	private IsiProgram program = new IsiProgram();
 	private ArrayList<AbstractCommand> curThread;
@@ -37,6 +39,9 @@ grammar IsiLang;
 		if (!symbolTable.exists(id)){
 			throw new IsiSemanticException("Symbol "+id+" not declared");
 		}
+		else{
+			symbolTableWar.drop(id);
+		}
 	}
 	
 	public void exibeComandos(){
@@ -47,6 +52,14 @@ grammar IsiLang;
 	
 	public void generateCode(){
 		program.generateTarget();
+		if (symbolTableWar.empty() == 1){
+			System.out.println("tem warning nesse caraio");
+		}
+		System.out.println("PRINTA ESSA PORRA");
+	}
+	
+	public void exibeWarning(){
+		
 	}
 }
 
@@ -66,7 +79,8 @@ declaravar :  tipo ID  {
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
-	                     symbolTable.add(symbol);	
+	                     symbolTable.add(symbol);
+	                     symbolTableWar.add(symbol);		
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -78,7 +92,8 @@ declaravar :  tipo ID  {
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
-	                     symbolTable.add(symbol);	
+	                     symbolTable.add(symbol);
+	                     symbolTableWar.add(symbol);	
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");

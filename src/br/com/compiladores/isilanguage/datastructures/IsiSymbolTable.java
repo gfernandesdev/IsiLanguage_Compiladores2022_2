@@ -16,6 +16,17 @@ public class IsiSymbolTable {
 		map.put(symbol.getName(), symbol);
 	}
 	
+	public void drop(String symbolName) {
+		map.remove(symbolName);
+	}
+	
+	public Integer empty() {
+		if(map.isEmpty()) {
+			return 1;
+		}
+		return 0;
+	}
+	
 	public boolean exists(String symbolName) {
 		return map.get(symbolName) != null;
 	}
