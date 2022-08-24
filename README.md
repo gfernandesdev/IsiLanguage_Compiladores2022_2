@@ -16,9 +16,9 @@ Possuir 2 tipos de dados (pelo menos 1 String)  (X)
 
 Possuir a instrução de decisão (if/else) 	(X) 
 
-Pelo menos 1 estrutura de repetição 	()
+Pelo menos 1 estrutura de repetição 	(X)
 
-Verificar Atribuições com compatibilidade de tipos (semântica)  (X)
+Verificar Atribuições com compatibilidade de tipos (semântica)  ()
 
 Possuir operações de Entrada e Saída 	(X)
 
